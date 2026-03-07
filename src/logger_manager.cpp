@@ -109,7 +109,7 @@ void LoggerManager::hook_ffmpeg_logging() {
 }
 
 void LoggerManager::unhook_ffmpeg_logging() {
-    av_log_set_callback(nullptr);
+    av_log_set_callback(av_log_default_callback);
 }
 
 }  // namespace logger_manager

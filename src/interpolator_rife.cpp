@@ -128,6 +128,10 @@ int InterpolatorRIFE::interpolate(
 
     // Convert ncnn::Mat to AVFrame
     *out_frame = conversions::ncnn_mat_to_avframe(out_mat, out_pix_fmt_);
+    if (*out_frame == nullptr) {
+        logger()->error("Failed to convert ncnn::Mat to AVFrame");
+        return AVERROR(ENOMEM);
+    }
 
     // Rescale PTS to encoder's time base
     (*out_frame)->pts = av_rescale_q(in_frame->pts, in_time_base_, out_time_base_);

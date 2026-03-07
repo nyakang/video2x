@@ -17,6 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Separate audio and subtitle stream copying options.
 
+### Fixed
+
+- Null pointer dereference in Real-ESRGAN, Real-CUGAN, and RIFE processors when frame conversion fails.
+- Vulkan hardware device context leak on error paths in libplacebo filter initialization.
+- Incorrect spdlog format string using printf-style specifiers instead of fmt-style placeholders.
+- Division by zero in CLI progress display within the first second of processing.
+- `unhook_ffmpeg_logging` disabling all FFmpeg logging instead of restoring the default callback.
+
 ## [6.4.0] - 2025-01-24
 
 ### Added

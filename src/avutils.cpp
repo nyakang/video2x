@@ -126,7 +126,7 @@ AVPixelFormat get_encoder_default_pix_fmt(const AVCodec* encoder, AVPixelFormat 
 
     if (target_pix_fmt != AV_PIX_FMT_NONE && best_pix_fmt != target_pix_fmt) {
         logger()->warn(
-            "Incompatible pixel format '%s' for encoder '%s'; auto-selecting format '%s'",
+            "Incompatible pixel format '{}' for encoder '{}'; auto-selecting format '{}'",
             av_get_pix_fmt_name(target_pix_fmt),
             encoder->name,
             av_get_pix_fmt_name(best_pix_fmt)

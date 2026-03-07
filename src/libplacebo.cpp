@@ -44,6 +44,7 @@ int init_libplacebo(
     AVFilterGraph* graph = avfilter_graph_alloc();
     if (!graph) {
         logger()->error("Unable to create filter graph.");
+        av_buffer_unref(&vk_hw_device_ctx);
         return AVERROR(ENOMEM);
     }
 
@@ -52,6 +53,7 @@ int init_libplacebo(
     if (!buffersrc) {
         logger()->error("Filter 'buffer' not found.");
         avfilter_graph_free(&graph);
+        av_buffer_unref(&vk_hw_device_ctx);
         return AVERROR_FILTER_NOT_FOUND;
     }
 
@@ -90,6 +92,7 @@ int init_libplacebo(
     if (ret < 0) {
         logger()->error("Cannot create buffer source.");
         avfilter_graph_free(&graph);
+        av_buffer_unref(&vk_hw_device_ctx);
         return ret;
     }
 
@@ -100,6 +103,7 @@ int init_libplacebo(
     if (!libplacebo_filter) {
         logger()->error("Filter 'libplacebo' not found.");
         avfilter_graph_free(&graph);
+        av_buffer_unref(&vk_hw_device_ctx);
         return AVERROR_FILTER_NOT_FOUND;
     }
 
@@ -123,6 +127,7 @@ int init_libplacebo(
     if (ret < 0) {
         logger()->error("Cannot create libplacebo filter.");
         avfilter_graph_free(&graph);
+        av_buffer_unref(&vk_hw_device_ctx);
         return ret;
     }
 

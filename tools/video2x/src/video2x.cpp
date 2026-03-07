@@ -170,7 +170,9 @@ int main(int argc, char** argv) {
 
                 // Calculate estimated time remaining
                 int64_t frames_remaining = total_frames - processed_frames;
-                double processing_rate = static_cast<double>(processed_frames) / time_elapsed;
+                double processing_rate = time_elapsed > 0
+                    ? static_cast<double>(processed_frames) / time_elapsed
+                    : 0.0;
                 int time_remaining =
                     static_cast<int>(static_cast<double>(frames_remaining) / processing_rate);
                 time_remaining = std::max<int>(time_remaining, 0);
